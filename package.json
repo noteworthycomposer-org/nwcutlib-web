@@ -1,0 +1,24 @@
+{
+	"name": "nwc2abc",
+	"version": "0.1.0",
+	"description": "Convert nwctxt to abc text",
+	"scripts": {
+		"start": "webpack-dev-server --hot --port 9000 --mode development",
+		"dev": "webpack --mode development",
+		"build": "webpack --mode production",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Noteworthy Software, Inc.",
+	"license": "UNLICENSED",
+	"private": true,
+	"devDependencies": {
+		"fengari-loader": "github:nwsw/fengari-loader#luaresolver",
+		"webpack": "^4.29.3",
+		"webpack-cli": "^3.2.3",
+		"webpack-dev-server": "^3.1.4"
+	},
+	"dependencies": {
+		"abcjs": "^5.6.4",
+		"fengari-web": "^0.1.4"
+	}
+}
