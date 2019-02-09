@@ -3,10 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <title>nwc2abc</title>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="abcjs-midi.css">
 </head>
 <body>
 <h1 id="maintitle">Initial state</h1>
 <h2 id="subtitle">Sub-initial state</h2>
-<script type="text/javascript" src="./nwc2abc.js" defer async></script>
+<script type="text/javascript" src="./nwc2abc.js"></script>
+<script>
+	console.log('typeof nwc2abc ',typeof(nwc2abc),nwc2abc.version);
+	let luamsg = nwc2abc.test('booya1!','booya2!','booya3!');
+	console.log('ran Lua ',luamsg);
+	nwc2abc.add('booya1!','booya2!','booya3!');
+</script>
 </body>
 </html>

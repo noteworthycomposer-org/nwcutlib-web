@@ -19,6 +19,7 @@
 	},
 	"dependencies": {
 		"abcjs": "^5.6.4",
-		"fengari-web": "^0.1.4"
+		"fengari-web": "^0.1.4",
+		"nwcutlib": "git+https://github.com/nwsw/nwcutlib.git"
 	}
 }
