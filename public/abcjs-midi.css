@@ -14,7 +14,7 @@
 .abcjs-inline-midi .abcjs-btn {
 	width: 28px;
 	height: 26px;
-	display: inline-block;
+	display: block;
 	margin-right: 2px;
 	float: left;
 	padding: 0;
@@ -128,7 +128,7 @@
 .abcjs-inline-midi .abcjs-tempo-wrapper {
 	float: right;
 	font-size: 10px;
-	display: inline-block;
+	display: block;
 	color: #f4f4f4;
 	box-sizing: border-box;
 }

@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-	entry: './src/main.lua',
+	entry: './src/main.jslua',
 	output: {
 		path: path.resolve(__dirname, 'public'),
 		filename: 'nwc2abc.js'
@@ -9,9 +9,24 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				test: /\.jslua$/,
+				use: [
+					{
+						loader: "fengari-loader",
+						options: { strip: false }
+					},
+					{ loader: path.resolve('./loader/luamin.js') }
+				]
+			},
+			{
+				test: /\.(txt|abc)$/,
+				use: 'raw-loader'
+			},
+			{
 				test: /\.lua$/,
 				use: [
-					{ loader: "fengari-loader" }
+					{ loader: 'raw-loader' },
+					{ loader: path.resolve('./loader/luamin.js') }
 				]
 			}
 		]

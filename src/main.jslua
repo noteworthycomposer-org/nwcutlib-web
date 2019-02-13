@@ -1,0 +1,76 @@
+local abcjs = require('abcjs/midi')
+local abctxtSample = require('./sample.abc');
+
+local fileloadList = {
+	outstream = require('./outstream.lua'),
+	htmlsetup = require('./htmlsetup.lua'),
+	['simulation.lua'] = require('nwcutlib/simulation.lua'),
+	['nwcut.lua'] = require('nwcutlib/nwcut.lua'),
+	['abcMake.nw.nwcut.lua'] = require('./abcMake.nw.nwcut.lua')
+}
+
+local fenngary_loadfile = loadfile
+local fenngary_dofile = dofile
+local webpack_loadfile = function(filename,mode,env)
+	local m = fileloadList[filename]
+	if not m then return fenngary_loadfile(filename,mode,env) end
+	-- avoid creating an nil default environment
+	return env and load(m,filename,mode,env) or load(m,filename,mode)
+end
+
+loadfile = webpack_loadfile
+dofile = function(f)
+	if fileloadList[f] then
+		local m = webpack_loadfile(f)
+		return m and m() or nil
+	end
+
+	return fenngary_dofile(f)
+end
+
+local NWOutStream = webpack_loadfile('outstream')()
+local htmlsetup = webpack_loadfile('htmlsetup')()
+local doc = js.global.document
+
+htmlsetup.docmods(doc, abcjs)
+doc:getElementById('intextbox').value = abctxtSample
+doc:getElementById('btnUpdate'):addEventListener('click', function(p1,p2)
+	local intextbox = doc:getElementById('intextbox')
+	local abctxt = intextbox.value
+
+	print('calling abcjs.renderAbc')
+	abcjs:renderAbc('abcCanvas', abctxt)
+	abcjs:renderMidi('abcMidi', abctxt)
+end)
+
+
+doc:getElementById('btnNWC2ABC'):addEventListener('click', function()
+	local intextbox = doc:getElementById('intextbox')
+	local nwctxt = intextbox.value
+	arg = {'abcMake.nw.nwcut.lua',5}
+	local io_stdout = NWOutStream.new()
+	local io_stderr = NWOutStream.new()
+	local function stdout_writer(...) io_stdout:write(...) end
+	io = {write=stdout_writer,stdout=io_stdout,stderr=io_stderr}
+	webpack_loadfile('simulation.lua')()
+end)
+
+local function getSafeString(s)
+	return (type(s) == 'string') and s or ''
+end
+
+local nwc2abc =  {
+	version = 0.1,
+	test = function(s0,s1,s2,s3,s4)
+		print('inside TestLuaRun',type(s0),getSafeString(s0),s1,s2,s3,s4)
+		return 'string inside Lua back to js'
+	end,
+	add = function(s0,s1)
+		print('called lua AddParagraph')
+		local newp = doc:createElement('p')
+		newp.innerHTML = ('boo-hoo %s'):format(s1)
+		doc.body:appendChild(newp)
+	end
+}
+
+js.global.nwc2abc = js.createproxy(nwc2abc,'object')
