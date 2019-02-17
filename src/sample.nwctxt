@@ -1,0 +1,12 @@
+!NoteWorthyComposer(2.751)
+|Editor|ActiveStaff:1|CaretIndex:1|SelectIndex:8|CaretPos:-2
+|SongInfo|Title:"Simple Scale"|Author:"Generic"|Copyright1:"No Asserted Copyright"
+|AddStaff
+|Clef|Type:Treble
+|Note|Dur:4th|Pos:-6
+|Note|Dur:4th|Pos:-5
+|Note|Dur:4th|Pos:-4
+|Note|Dur:4th|Pos:-3
+|Bar
+|Note|Dur:Whole|Pos:-2
+!NoteWorthyComposer-End

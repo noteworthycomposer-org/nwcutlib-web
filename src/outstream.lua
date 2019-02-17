@@ -18,6 +18,11 @@ function NWOutStream:write(...)
 	for i = 1, #a do table.insert(self.t,tostring(a[i])) end
 end
 
+function NWOutStream:writeln(...)
+	self:write(...)
+	self:write('\n')
+end
+
 function NWOutStream:__tostring()
 	return table.concat(self.t)
 end

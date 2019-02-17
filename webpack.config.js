@@ -19,7 +19,7 @@ module.exports = {
 				]
 			},
 			{
-				test: /\.(txt|abc)$/,
+				test: /\.(abc|nwctxt|txt)$/,
 				use: 'raw-loader'
 			},
 			{

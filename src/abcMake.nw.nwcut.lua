@@ -8,7 +8,7 @@ $NWCUT$CONFIG: FileText $
 
 nwcut.status = nwcut.const.rc_Report
 
-local MAXBARSPERSYS = nwcut.prompt('how many bars per system?','#[2,9999,1]',5)
+local MAXBARSPERSYS = arg[2] and arg[2] or nwcut.prompt('how many bars per system?','#[2,9999,1]',5)
 
 local abcMap = {
 	barMap = {
@@ -81,8 +81,7 @@ local si = score.SongInfo
 local firstTempo = findFirst(score,'Tempo')
 
 print('%abc-2.2')
-print('% this converter prioritizes abcjs compatibility when possible')
-print('% https://noteworthycomposer.org/abcjs')
+print('% nwc2abc.js - this converter prioritizes abcjs compatibility')
 print('X:1')
 print('T:',si:Get('Title') or 'Untitled')
 print('C:',si:Get('Author') or 'Anonymous')
