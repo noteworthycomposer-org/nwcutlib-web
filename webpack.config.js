@@ -1,4 +1,5 @@
 const path = require('path');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
 	entry: './src/main.jslua',
@@ -15,22 +16,29 @@ module.exports = {
 						loader: "fengari-loader",
 						options: { strip: false }
 					},
-					//{ loader: path.resolve('./loader/luamin.js') }
+					{ loader: path.resolve('./loader/luamin.js') }
 				]
 			},
 			{
 				test: /\.(abc|nwctxt|txt)$/,
-				use: 'raw-loader'
+				use: [
+					{ loader: 'raw-loader', options: {esModule: false} }
+				]
 			},
 			{
 				test: /\.lua$/,
 				use: [
-					{ loader: 'raw-loader' },
+					{ loader: 'raw-loader', options: {esModule: false} },
 					{ loader: path.resolve('./loader/luamin.js') }
 				]
 			}
 		]
 	},
+	plugins: [
+		new CompressionPlugin({
+			test: /\.(css|js|html)$/i,
+		})
+	],
 	devServer: {
 		contentBase: path.join(__dirname, 'public'),
 		//compress: true,

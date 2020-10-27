@@ -2,52 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>nwc2abc</title>
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="abcjs-midi.css">
-<style>
-#warningsBox {background:yellow; color:darkred;}
-</style>
+<title>Index</title>
 </head>
 <body>
-<h1><i class="fa fa-music"></i> nwc2abc</h1>
-<h2>Convert any recent nwc text clip into abc notation</h2>
-<p>
-	<button id="btnNWC2ABC">Run nwc2abc</button>
-	<button id="btnUpdate">Notate with abcjs</button>
-	<textarea id="intextbox" cols="80" rows="15" style="width:100%"></textarea>
-</p>
-<div id='warningsBox'></div>
-<div id='abcMidi'></div>
-<div id='abcCanvas'></div>
-
-<script type="text/javascript" src="./nwc2abc.js"></script>
-<script type="text/javascript" src="./abcjs_midi_5.6.5-min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-<script>
-	console.log('nwc2abc.version',nwc2abc.version);
-
-	var intextbox = document.getElementById('intextbox');
-	var warnbox = document.getElementById('warningsBox');
-	var btnUpdate = document.getElementById('btnUpdate');
-	var btnConvert = document.getElementById('btnNWC2ABC');
-
-	intextbox.value = nwc2abc.nwctxtSample;
-
-	btnConvert.addEventListener('click', function() {
-		const {status:utStatus,output:t1,error:t2} = nwc2abc.convert(intextbox.value,4);
-		intextbox.value = t1;
-		warnbox.textContent = t2;
-	});
-
-	btnUpdate.addEventListener('click', function() {
-		var abctxt = intextbox.value;
-	
-		console.log('calling abcjs.renderAbc');
-		ABCJS.renderAbc('abcCanvas', abctxt);
-		ABCJS.renderMidi('abcMidi', abctxt);
-	});
-</script>
+<ul>
+	<li><a href="./nwc2abc.html">nwc2abc</a></li>
+	<li><a href="./nwc2abcjs.html">nwc2abcjs</a></li>
+</ul>
 </body>
 </html>

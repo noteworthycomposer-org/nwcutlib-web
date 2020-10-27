@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>nwc2abc</title>
+<style>
+	body {padding: 8px;}
+	textarea {display: block; margin: 10px 0px;}
+</style>
+</head>
+<body>
+<h1>nwc2abc</h1>
+<h2>Convert any recent nwc text clip into abc notation text</h2>
+<p>
+<textarea id="text-in" cols="80" rows="15" style="width:80%"></textarea>
+<button id="btnConvert">Convert</button>
+<textarea id="text-err" cols="80" rows="4" style="width:80%"></textarea>
+<textarea id="text-out" cols="80" rows="15" style="width:80%"></textarea>
+</p>
+
+<script type="text/javascript" src="./nwc2abc.js"></script>
+
+<script>
+	console.log('nwc2abc.version',nwc2abc.version);
+
+	var text_in = document.getElementById('text-in');
+	var text_err = document.getElementById('text-err');
+	var text_out = document.getElementById('text-out');
+	var btnConvert = document.getElementById('btnConvert');
+
+	text_in.textContent = nwc2abc.nwctxtSample;
+	text_err.textContent = 'no errors';
+
+	btnConvert.addEventListener('click', function() {
+		const {status:utStatus,output:t1,error:t2} = nwc2abc.convert(text_in.value,4);
+		text_out.value = t1;
+		text_err.textContent = t2;
+	});
+</script>
+</body>
+</html>

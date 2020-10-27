@@ -1,7 +1,8 @@
-local nwctxtSample = require('./sample.nwctxt');
+local currentVersion = '0.3.0';
+local nwctxtSample = require('./sample.nwctxt')
 
 local fileloadList = {
-	outstream = require('./outstream.lua'),
+	['outstream'] = require('./outstream.lua'),
 	['synthesized-nwc.lua'] = require('nwcutlib/synthesized-nwc.lua'),
 	['synthesize.lua'] = require('nwcutlib/synthesize.lua'),
 	['simulation.lua'] = require('nwcutlib/simulation.lua'),
@@ -12,24 +13,24 @@ local fileloadList = {
 local fengary_loadfile = loadfile
 local fengary_dofile = dofile
 local fengary_print = print
-local webpack_loadfile = function(filename,mode,env)
+local smart_loadfile = function(filename,mode,env)
 	local m = fileloadList[filename]
-	if not m then return fenngary_loadfile(filename,mode,env) end
-	-- avoid creating an nil default environment
+	if not m then return fengary_loadfile(filename,mode,env) end
+	-- avoid creating a nil default environment
 	return env and load(m,filename,mode,env) or load(m,filename,mode)
 end
 
-loadfile = webpack_loadfile
+loadfile = smart_loadfile
 dofile = function(f)
 	if fileloadList[f] then
-		local m = webpack_loadfile(f)
+		local m = smart_loadfile(f)
 		return m and m() or nil
 	end
 
 	return fengary_dofile(f)
 end
 
-local NWOutStream = webpack_loadfile('outstream')()
+local NWOutStream = smart_loadfile('outstream')()
 
 local function getSafeString(s)
 	return (type(s) == 'string') and s or ''
@@ -64,7 +65,7 @@ local function runUserTool(mod,intxt,...)
 end
 
 local nwc2abc =  {
-	version = 0.1,
+	version = currentVersion,
 	['nwctxtSample'] = nwctxtSample,
 	convert = function(mod,nwctxt,barsPerLine)
 		local r = runUserTool(mod,nwctxt,'abcMake.nw.nwcut.lua',tonumber(barsPerLine) or 5)

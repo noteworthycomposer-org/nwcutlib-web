@@ -1,6 +1,6 @@
 {
 	"name": "nwc2abc",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "Convert nwctxt to abc text",
 	"scripts": {
 		"start": "npx webpack-dev-server --hot --port 9000 --mode development",
@@ -13,6 +13,7 @@
 	"license": "UNLICENSED",
 	"private": true,
 	"devDependencies": {
+		"compression-webpack-plugin": "^6.0.3",
 		"fengari-loader": "github:noteworthycomposer-org/fengari-loader",
 		"luamin": "^1.0.4",
 		"raw-loader": "^4.0.0",
