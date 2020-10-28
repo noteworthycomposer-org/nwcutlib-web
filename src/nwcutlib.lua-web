@@ -1,13 +1,9 @@
-local currentVersion = '0.3.0';
-local nwctxtSample = require('./sample.nwctxt')
-
 local fileloadList = {
 	['outstream'] = require('./outstream.lua'),
 	['synthesized-nwc.lua'] = require('nwcutlib/synthesized-nwc.lua'),
 	['synthesize.lua'] = require('nwcutlib/synthesize.lua'),
 	['simulation.lua'] = require('nwcutlib/simulation.lua'),
-	['nwcut.lua'] = require('nwcutlib/nwcut.lua'),
-	['abcMake.nw.nwcut.lua'] = require('./abcMake.nw.nwcut.lua')
+	['nwcut.lua'] = require('nwcutlib/nwcut.lua')
 }
 
 local fengary_loadfile = loadfile
@@ -64,13 +60,11 @@ local function runUserTool(mod,intxt,...)
 	}
 end
 
-local nwc2abc =  {
-	version = currentVersion,
-	['nwctxtSample'] = nwctxtSample,
-	convert = function(mod,nwctxt,barsPerLine)
-		local r = runUserTool(mod,nwctxt,'abcMake.nw.nwcut.lua',tonumber(barsPerLine) or 5)
+local utlib =  {
+	nwcRunUserTool = function(mod,tool,nwctxt,...)
+		local r = runUserTool(mod,nwctxt,tool,...)
 		return js.createproxy(r,'object')
 	end
 }
 
-js.global.nwc2abc = js.createproxy(nwc2abc,'object')
+return js.createproxy(utlib,'object')

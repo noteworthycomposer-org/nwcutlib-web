@@ -1,16 +1,18 @@
+const webpack = require('webpack');
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
+const pkg_json = require('./package.json');
 
 module.exports = {
-	entry: './src/main.jslua',
+	entry: './src/main.js',
 	output: {
 		path: path.resolve(__dirname, 'public'),
-		filename: 'nwc2abc.js'
+		filename: 'nwcutlib.js'
 	},
 	module: {
 		rules: [
 			{
-				test: /\.jslua$/,
+				test: /\.lua-web$/,
 				use: [
 					{
 						loader: "fengari-loader",
@@ -35,6 +37,9 @@ module.exports = {
 		]
 	},
 	plugins: [
+		new webpack.DefinePlugin({
+			VERSION: JSON.stringify(pkg_json.version)
+		}),
 		new CompressionPlugin({
 			test: /\.(css|js|html)$/i,
 		})

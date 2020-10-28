@@ -1,7 +1,7 @@
 {
-	"name": "nwc2abc",
+	"name": "nwcutlib-web",
 	"version": "0.3.0",
-	"description": "Convert nwctxt to abc text",
+	"description": "Run nwc user tools in a browser",
 	"scripts": {
 		"start": "npx webpack-dev-server --hot --port 9000 --mode development",
 		"dev": "npx webpack --mode development",

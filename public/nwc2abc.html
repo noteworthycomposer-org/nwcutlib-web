@@ -6,33 +6,47 @@
 <style>
 	body {padding: 8px;}
 	textarea {display: block; margin: 10px 0px;}
+	label {display:block; clear:both; padding:12px 0 0 0;}
+	input[type="number"] {width: 3em;}
+	textarea {margin: 0; padding:3px;}
 </style>
 </head>
 <body>
 <h1>nwc2abc</h1>
 <h2>Convert any recent nwc text clip into abc notation text</h2>
 <p>
-<textarea id="text-in" cols="80" rows="15" style="width:80%"></textarea>
-<button id="btnConvert">Convert</button>
-<textarea id="text-err" cols="80" rows="4" style="width:80%"></textarea>
-<textarea id="text-out" cols="80" rows="15" style="width:80%"></textarea>
+<label for="id-barCount">Bars per measure <input id="id-barCount" type="number" min="2" max="10" value="4"></label>
+<label for="text-in">nwctxt Input:
+	<textarea id="text-in" cols="80" rows="15" style="width:80%"></textarea>
+	<button id="btnConvert">Convert</button>
+</label>
+
+<label for="text-err">Error Text:
+	<textarea id="text-err" cols="80" rows="4" style="width:80%"></textarea>
+</label>
+
+<label for="text-out">Output:
+	<textarea id="text-out" cols="80" rows="15" style="width:80%"></textarea>
+</label>
 </p>
 
-<script type="text/javascript" src="./nwc2abc.js"></script>
+<script type="text/javascript" src="./nwcutlib.js"></script>
 
 <script>
-	console.log('nwc2abc.version',nwc2abc.version);
+	let barc = document.getElementById('id-barCount');
+	let text_in = document.getElementById('text-in');
+	let text_err = document.getElementById('text-err');
+	let text_out = document.getElementById('text-out');
+	let btnConvert = document.getElementById('btnConvert');
 
-	var text_in = document.getElementById('text-in');
-	var text_err = document.getElementById('text-err');
-	var text_out = document.getElementById('text-out');
-	var btnConvert = document.getElementById('btnConvert');
-
-	text_in.textContent = nwc2abc.nwctxtSample;
 	text_err.textContent = 'no errors';
+	fetch('sample.nwctxt')
+		.then(r => r.text())
+		.then(r => {text_in.textContent = r})
+		.catch(error => {text_err.textContent = reason});
 
 	btnConvert.addEventListener('click', function() {
-		const {status:utStatus,output:t1,error:t2} = nwc2abc.convert(text_in.value,4);
+		const {status:utStatus,output:t1,error:t2} = NWC.utlib.run('abcMake.nw.nwcut.lua',text_in.value,Number(barc.value));
 		text_out.value = t1;
 		text_err.textContent = t2;
 	});
