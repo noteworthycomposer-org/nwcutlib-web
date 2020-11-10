@@ -1,1 +1,3 @@
-print 'f2.cfolder'
+local msg = 'f2.cfolder'
+print(msg)
+return msg

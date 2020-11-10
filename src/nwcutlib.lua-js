@@ -1,5 +1,7 @@
-require('./f1/test.lua-js')
-require('./f2/test.lua-js')
+local mod1 = require './f1/test.lua-js'
+local mod2 = require('./f2/test.lua-js')
+
+print('modules loaded',type(mod1),mod1,type(mod2),mod2)
 
 local fileloadList = {
 	['outstream'] = require('./outstream.lua'),
