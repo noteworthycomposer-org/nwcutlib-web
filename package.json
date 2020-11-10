@@ -17,7 +17,7 @@
 		"http-server": "^0",
 		"luamin": "^1.0.4",
 		"raw-loader": "^4.0.0",
-		"webpack": "^4",
+		"webpack": "^5.0.0-rc.6",
 		"webpack-cli": "^3"
 	},
 	"dependencies": {
