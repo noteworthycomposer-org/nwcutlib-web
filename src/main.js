@@ -1,4 +1,4 @@
-import {nwcRunUserTool} from './nwcutlib.lua-web';
+import {nwcRunUserTool} from './nwcutlib.lua-js';
 
 function init() {
 	let jslib = {

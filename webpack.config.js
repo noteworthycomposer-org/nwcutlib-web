@@ -12,7 +12,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.lua-web$/,
+				test: /\.lua-js$/,
 				use: [
 					{
 						loader: "fengari-loader",

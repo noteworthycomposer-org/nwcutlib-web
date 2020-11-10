@@ -1,0 +1,3 @@
+require('./cfolder.lua-js')
+
+print 'in test2'

@@ -1,3 +1,0 @@
-require('./cfolder.lua-web')
-
-print 'in test2'

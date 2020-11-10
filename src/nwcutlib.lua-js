@@ -1,5 +1,5 @@
-require('./f1/test.lua-web')
-require('./f2/test.lua-web')
+require('./f1/test.lua-js')
+require('./f2/test.lua-js')
 
 local fileloadList = {
 	['outstream'] = require('./outstream.lua'),
