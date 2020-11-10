@@ -1,3 +1,6 @@
+require('./f1/test.lua-web')
+require('./f2/test.lua-web')
+
 local fileloadList = {
 	['outstream'] = require('./outstream.lua'),
 	['synthesized-nwc.lua'] = require('nwcutlib/synthesized-nwc.lua'),

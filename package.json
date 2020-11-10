@@ -3,8 +3,7 @@
 	"version": "0.3.0",
 	"description": "Run nwc user tools in a browser",
 	"scripts": {
-		"start": "npx webpack-dev-server --hot --port 9000 --mode development",
-		"dev": "npx webpack --mode development",
+		"dev": "webpack --mode development",
 		"build": "npx webpack --mode production",
 		"serve": "http-server -p 9090 public -c-1",
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -15,11 +14,11 @@
 	"devDependencies": {
 		"compression-webpack-plugin": "^6.0.3",
 		"fengari-loader": "github:noteworthycomposer-org/fengari-loader",
+		"http-server": "^0",
 		"luamin": "^1.0.4",
 		"raw-loader": "^4.0.0",
 		"webpack": "^4",
-		"webpack-cli": "^3",
-		"webpack-dev-server": "^3.11.0"
+		"webpack-cli": "^3"
 	},
 	"dependencies": {
 		"fengari-web": "^0.1.4",
