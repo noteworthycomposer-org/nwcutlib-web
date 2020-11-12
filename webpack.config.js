@@ -18,7 +18,8 @@ module.exports = {
 						loader: "fengari-loader",
 						options: { strip: false }
 					},
-					{ loader: path.resolve('./loader/luamin.js') }
+					{ loader: path.resolve('./loader/luamin.js') },
+					{ loader: path.resolve('./loader/luareqpath.js') },
 				]
 			},
 			{

@@ -13,7 +13,7 @@
 	"private": true,
 	"devDependencies": {
 		"compression-webpack-plugin": "^6.0.3",
-		"fengari-loader": "github:noteworthycomposer-org/fengari-loader",
+		"fengari-loader": "github:fengari-lua/fengari-loader",
 		"http-server": "^0",
 		"luamin": "^1.0.4",
 		"raw-loader": "^4.0.0",
