@@ -1,5 +1,0 @@
-local obj = require('./cfolder.lua-js')
-
-print 'in test2'
-
-return obj

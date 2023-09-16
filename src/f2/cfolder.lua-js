@@ -1,3 +1,0 @@
-local msg = 'f2.cfolder'
-print(msg)
-return msg
