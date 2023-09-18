@@ -1,5 +1,6 @@
 const { build } = require('esbuild');
 const { replace } = require('esbuild-plugin-replace');
+const { luamin } = require('./loader/luamin');
 const pkg_json = require('./package.json');
 
 build({
@@ -16,17 +17,18 @@ build({
 	},
 	plugins: [
 		replace({
-			include: /(fengari|fengari-interop).+\.js$/,
+			include: /\b(fengari|fengari-interop).+\.js$/,
 			values: {
 				'process.env.FENGARICONF': 'void 0',
 				'typeof process': '"undefined"'
 			}
 		}),
-	replace({
-		include: /main\.js$/,
-		values: {
-			'PKG_VERSION': JSON.stringify(pkg_json.version)
-		}
-	}),
-],
+		replace({
+			include: /\bmain\.js$/,
+			values: {
+				'PKG_VERSION': JSON.stringify(pkg_json.version)
+			}
+		}),
+		luamin({include: /\.lua$/})
+	],
 })
