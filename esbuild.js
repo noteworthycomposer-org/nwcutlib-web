@@ -17,14 +17,13 @@ let luamin_loader = (options = {}) => {
 	}
 }
 
-// hope to use something like this eventually to replace 'esbuild-plugin-replace'
 let newreplace = (options = {}) => {
 	return {
 		name: 'newreplace',
 		setup(build) {
 			build.onLoad({ filter: options.include }, async (args) => {
 				let contents = await fs.promises.readFile(args.path, "utf8");
-				for (const k in Object.keys(options.values)) {
+				for (const k in options.values) {
 					contents = contents.replaceAll(k,options.values[k]);
 				}
 				return { contents, loader: 'default' };				
@@ -46,14 +45,14 @@ build({
 		'.ttf': 'dataurl'
 	},
 	plugins: [
-		replace({
+		newreplace({
 			include: /\b(fengari|fengari-interop).+\.js$/,
 			values: {
 				'process.env.FENGARICONF': 'void 0',
-				'typeof process': '"undefined"'
+				'typeof process': JSON.stringify('undefined')
 			}
 		}),
-		replace({
+		newreplace({
 			include: /\bmain\.js$/,
 			values: {
 				'PKG_VERSION': JSON.stringify(pkg_json.version)

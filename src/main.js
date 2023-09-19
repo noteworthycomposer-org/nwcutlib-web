@@ -1,4 +1,4 @@
-import {L,lua,lauxlib,interop,to_luastring} from 'fengari-web';
+import {L,lua,lauxlib,interop,to_luastring} from 'fengari-web/src/fengari-web';
 
 import lua_js2nwcutlib from './js2nwcutlib.lua';
 import lua_outstream from './outstream.lua';
