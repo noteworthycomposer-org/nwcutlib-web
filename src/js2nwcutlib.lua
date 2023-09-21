@@ -1,4 +1,3 @@
---print('js2nwc loading')
 return function(luaPreloads)
 	--luaPreloads = {
 	--	['outstream'] = require('./outstream.lua'),
@@ -7,8 +6,6 @@ return function(luaPreloads)
 	--	['simulation.lua'] = require('nwcutlib/simulation.lua'),
 	--	['nwcut.lua'] = require('nwcutlib/nwcut.lua')
 	--}
-	--print('js2nwc init function',type(luaPreloads),#luaPreloads,luaPreloads)
-	--for k,v in pairs(luaPreloads) do print(k,v) end
 
 	local fengary_loadfile = loadfile
 	local fengary_dofile = dofile
@@ -31,10 +28,6 @@ return function(luaPreloads)
 	end
 
 	local NWOutStream = smart_loadfile('outstream')()
-
-	local function getSafeString(s)
-		return (type(s) == 'string') and s or ''
-	end
 
 	local function runUserTool(mod,intxt,...)
 		arg = {...}

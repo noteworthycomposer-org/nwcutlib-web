@@ -21,7 +21,7 @@ let replace = (options = {}) => {
 		name: 'replace',
 		setup(build) {
 			build.onLoad({ filter: options.include }, async (args) => {
-				let contents = await fs.promises.readFile(args.path, "utf8");
+				let contents = await fs.promises.readFile(args.path, 'utf8');
 				for(let i=0; i < r.length; i+=2) {
 					contents = contents.replaceAll(r[i],r[i+1]);
 				}

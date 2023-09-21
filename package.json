@@ -4,7 +4,7 @@
 	"description": "Run nwc user tools in a browser",
 	"scripts": {
 		"build": "node esbuild.js",
-		"serve": "http-server -p 9090 public -c-1"
+		"serve": "http-server -g -p 9090 public -c-1"
 	},
 	"author": "Noteworthy Software, Inc.",
 	"license": "UNLICENSED",
