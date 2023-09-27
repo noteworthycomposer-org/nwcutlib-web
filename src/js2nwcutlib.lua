@@ -1,12 +1,5 @@
 return function(luaPreloads)
-	--luaPreloads = {
-	--	['outstream'] = require('./outstream.lua'),
-	--	['synthesized-nwc.lua'] = require('nwcutlib/synthesized-nwc.lua'),
-	--	['synthesize.lua'] = require('nwcutlib/synthesize.lua'),
-	--	['simulation.lua'] = require('nwcutlib/simulation.lua'),
-	--	['nwcut.lua'] = require('nwcutlib/nwcut.lua')
-	--}
-
+	--luaPreloads is a table of preloaded Lua files, keyed by their file path
 	local fengary_loadfile = loadfile
 	local fengary_dofile = dofile
 	local fengary_print = print

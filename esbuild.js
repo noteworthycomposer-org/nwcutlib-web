@@ -1,11 +1,13 @@
-const fs = require('fs');
-const { build } = require('esbuild');
-const gzipme = require('gzipme');
-const esbuild_replace = require('./build/esbuild_replace');
-const esbuild_luamin = require('./build/esbuild_luamin');
-const pkg_json = require('./package.json');
+const fs = require('fs')
+const { build } = require('esbuild')
+const esbuild_replace = require('./tools/esbuild_replace')
+const esbuild_luamin = require('./tools/esbuild_luamin')
+const pkg_json = require('./package.json')
 
-const outFilename = './public/nwcutlib.js';
+const outFilename = './public/nwcutlib.js'
+
+// kill the gzip version if it exists
+fs.rmSync(`${outFilename}.gz`,{force:true})
 
 build({
 	entryPoints: ['./src/main.js'],
@@ -36,5 +38,3 @@ build({
 		esbuild_luamin({include: /\.lua$/})
 	],
 })
-
-gzipme(outFilename, {mode:'best', output: `${outFilename}.gz`});

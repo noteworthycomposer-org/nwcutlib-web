@@ -9,10 +9,10 @@ dependencies:
     specifier: ^0.1.4
     version: 0.1.4
   fflate:
-    specifier: ^0.8.0
+    specifier: ^0.8.1
     version: 0.8.1
   nwcutlib:
-    specifier: git+https://github.com/nwsw/nwcutlib.git
+    specifier: github:nwsw/nwcutlib
     version: github.com/nwsw/nwcutlib/7ef5d040c6a78185b5bfa4e7cdefe7ea010d16ac
 
 devDependencies:

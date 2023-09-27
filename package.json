@@ -4,6 +4,7 @@
 	"description": "Run nwc user tools in a browser",
 	"scripts": {
 		"build": "node esbuild.js",
+		"gzip": "node tools/gzip-the-build.js",
 		"serve": "http-server -g -p 9090 public -c-1"
 	},
 	"author": "Noteworthy Software, Inc.",
@@ -16,7 +17,7 @@
 	},
 	"dependencies": {
 		"fengari-web": "^0.1.4",
-		"fflate": "^0.8.0",
-		"nwcutlib": "git+https://github.com/nwsw/nwcutlib.git"
+		"fflate": "^0.8.1",
+		"nwcutlib": "github:nwsw/nwcutlib"
 	}
 }
