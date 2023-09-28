@@ -1,4 +1,5 @@
 import {L,lua,lauxlib,interop,to_luastring} from 'fengari-web/src/fengari-web';
+import {nwcut_prompt,nwcut_prompt_promise} from './nwcut_prompt';
 import lua_js2nwcutlib from './js2nwcutlib.lua';
 import lua_outstream from './outstream.lua';
 import lua_synthesized_nwc from 'nwcutlib/synthesized-nwc.lua';
@@ -6,10 +7,14 @@ import lua_synthesize from './web-nwcut.lua';
 import lua_simulation from 'nwcutlib/simulation.lua';
 import lua_nwcut from 'nwcutlib/nwcut.lua';
 
-const {LUA_OK,lua_createtable,lua_gettop,lua_pcall,lua_pop,lua_pushcfunction,lua_pushvalue,lua_pushliteral,lua_setfield,lua_tostring,lua_type} = lua;
+const {LUA_OK,LUA_ERRSYNTAX,lua_createtable,lua_gettop,lua_pcall,lua_pop,lua_pushcfunction,lua_pushvalue,
+	lua_pushliteral,lua_setfield,lua_tostring,lua_tojsstring,lua_type} = lua;
 const {luaL_loadbuffer} = lauxlib;
 const {tojs} = interop;
 
+async function uprompt(msg,  datatype, listvals, defaultval) {
+	return await nwcut_prompt_promise(msg,  datatype, listvals, defaultval);
+}
 
 function init() {
 	// the approach here is to bundle all of the nwcutlib Lua files, then set them up as a preload
@@ -39,6 +44,8 @@ function init() {
 
 	let jslib = {
 		version: PKG_VERSION,
+		prompt: nwcut_prompt,
+		cbResult: false,
 		run: nwcRunUserTool
 	};
 	

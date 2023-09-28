@@ -1,3 +1,6 @@
+local js = require "js"
+local window = js.global
+
 return function(luaPreloads)
 	--luaPreloads is a table of preloaded Lua files, keyed by their file path
 	local fengary_loadfile = loadfile
@@ -51,8 +54,10 @@ return function(luaPreloads)
 	end
 
 	local nwcRunUserTool = function(mod,tool,nwctxt,...)
-		local r = runUserTool(mod,nwctxt,tool,...)
-		return js.createproxy(r,'object')
+		coroutine.wrap(function(mod,tool,nwctxt,...)
+			local r = runUserTool(mod,nwctxt,tool,...)
+			window.NWC.utlib:cbResult(js.createproxy(r,'object'))
+		end)(mod,tool,nwctxt,...)
 	end
 
 	return js.createproxy(nwcRunUserTool,'function')

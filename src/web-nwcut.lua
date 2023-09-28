@@ -24,7 +24,16 @@ return function(input_string)
 	end
 
 	nwcut.askbox = function(msg, msgtitle, flags)
-		return 1
+		local co = coroutine.running()
+		msg = (msgtitle or 'Askbox')..'\n\n'..msg
+
+		local cb = function(mod,retvalue)
+			coroutine.resume(co,retvalue)
+		end
+
+		window.NWC.utlib:prompt(msg,'*','','yes',cb)
+		local retvalue = coroutine.yield()
+		return retvalue
 	end
 
 	nwcut.prompt = function(msg, datatype, default)

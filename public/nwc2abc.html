@@ -41,14 +41,19 @@
 
 	text_err.textContent = 'no errors';
 	fetch('sample.nwctxt')
-		.then(r => r.text())
-		.then(r => {text_in.textContent = r})
-		.catch(error => {text_err.textContent = reason});
-
-	btnConvert.addEventListener('click', function() {
-		const {status:utStatus,output:t1,error:t2} = NWC.utlib.run('abcMake.nw.nwcut.lua',text_in.value,Number(barc.value));
+	.then(r => r.text())
+	.then(r => {text_in.textContent = r})
+	.catch(error => {text_err.textContent = reason});
+	
+	// Add the result callback which is invoked upcon completion of the usertool
+	NWC.utlib.cbResult = function(r) {
+		const {status:utStatus,output:t1,error:t2} = r;
 		text_out.value = t1;
 		text_err.textContent = t2;
+	}
+
+	btnConvert.addEventListener('click', function() {
+		NWC.utlib.run('abcMake.nw.nwcut.lua',text_in.value,Number(barc.value));
 	});
 </script>
 </body>
