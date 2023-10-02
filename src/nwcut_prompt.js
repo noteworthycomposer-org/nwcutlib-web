@@ -1,9 +1,14 @@
 
-function nwcut_prompt(msg,  datatype, listvals, defaultval,callbackFunc) {
+function nwcut_prompt(msg,  datatype, v3, v4,callbackFunc) {
+	let listvals = (datatype == '|') ? v3 : false;
+	let defaultval = listvals ? v4 : v3;
 	let c_dlg = document.createElement('dialog');
 	let c_form = c_dlg.appendChild(document.createElement('form'));
-	let c_label = c_form.appendChild(document.createElement('label'));
-	let c_input = c_form.appendChild(document.createElement('input'));
+	let c_label = document.createElement('label');
+	let c_input = document.createElement('input');
+	c_label.setAttribute('for',c_input.getAttribute('id'));
+	c_form.appendChild(c_label);
+	c_form.appendChild(c_input);
 	let c_ok = c_form.appendChild(document.createElement('button'));
 	c_dlg.className = 'nwcut';
 	c_label.textContent = msg;
@@ -22,9 +27,9 @@ function nwcut_prompt(msg,  datatype, listvals, defaultval,callbackFunc) {
 	c_dlg.showModal();
 }
 
-function nwcut_prompt_promise(msg,  datatype, listvals, defaultval) {
+function nwcut_prompt_promise(msg,  datatype, v3, v4) {
 	return new Promise((resolve) => {
-		nwcut_prompt(msg,  datatype, listvals, defaultval, (r) => {
+		nwcut_prompt(msg,  datatype, v3, v4, (r) => {
 			resolve(r)
 		});
 	});

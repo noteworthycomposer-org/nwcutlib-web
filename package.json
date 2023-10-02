@@ -3,15 +3,16 @@
 	"version": "0.4.0",
 	"description": "Run nwc user tools in a browser",
 	"scripts": {
-		"build": "node esbuild.js",
+		"build": "node esbuild.mjs",
 		"gzip": "node tools/gzip-the-build.js",
-		"serve": "http-server -g -p 9090 public -c-1"
+		"serve": "node esbuild.mjs --serve"
 	},
 	"author": "Noteworthy Software, Inc.",
 	"license": "UNLICENSED",
 	"private": true,
 	"devDependencies": {
-		"esbuild": "^0.19.3",
+		"@chialab/esbuild-plugin-html": "^0.17.3",
+		"esbuild": "^0.19.4",
 		"gzipme": "^1.0.0",
 		"luamin": "^1.0.4"
 	},

@@ -24,20 +24,15 @@ return function(input_string)
 	end
 
 	nwcut.askbox = function(msg, msgtitle, flags)
-		local co = coroutine.running()
-		msg = (msgtitle or 'Askbox')..'\n\n'..msg
-
-		local cb = function(mod,retvalue)
-			coroutine.resume(co,retvalue)
-		end
-
-		window.NWC.utlib:prompt(msg,'*','','yes',cb)
-		local retvalue = coroutine.yield()
-		return retvalue
+		local r = window:confirm(msg)
+		return r and 1 or -1
 	end
 
-	nwcut.prompt = function(msg, datatype, default)
-		return default
+	nwcut.prompt = function(msg, datatype, v3, v4)
+		local co = assert(coroutine.running())
+		local cb = function(mod,retvalue) coroutine.resume(co,retvalue)	end
+		window.NWC.utlib:prompt(msg,datatype,v3,v4,cb)
+		return coroutine.yield()
 	end
 
 	nwcut.clock = os.clock

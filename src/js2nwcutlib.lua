@@ -55,8 +55,11 @@ return function(luaPreloads)
 
 	local nwcRunUserTool = function(mod,tool,nwctxt,...)
 		coroutine.wrap(function(mod,tool,nwctxt,...)
+			local utlib = window.NWC.utlib
 			local r = runUserTool(mod,nwctxt,tool,...)
-			window.NWC.utlib:cbResult(js.createproxy(r,'object'))
+			if utlib.cbResult then
+				utlib:cbResult(js.createproxy(r,'object'))
+			end
 		end)(mod,tool,nwctxt,...)
 	end
 

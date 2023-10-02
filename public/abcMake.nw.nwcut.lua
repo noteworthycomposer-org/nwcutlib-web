@@ -7,7 +7,8 @@ $NWCUT$CONFIG: FileText $
 --]]-------------------------------------------------------------------------
 
 nwcut.status = nwcut.const.rc_Report
-print('askbox returns ',nwcut.askbox('what is up?'))
+local testval = nwcut.prompt('testing how many bars per system?','#[2,9999,1]',5)
+print('testval: ',testval)
 
 local MAXBARSPERSYS = arg[2] and arg[2] or nwcut.prompt('how many bars per system?','#[2,9999,1]',5)
 
