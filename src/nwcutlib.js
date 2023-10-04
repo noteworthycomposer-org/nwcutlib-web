@@ -1,9 +1,9 @@
 import {L,lua,lauxlib,interop,to_luastring} from 'fengari-web/src/fengari-web';
 import {nwcut_prompt,nwcut_prompt_promise} from './nwcut_prompt';
-import lua_js2nwcutlib from './js2nwcutlib.lua';
-import lua_outstream from './outstream.lua';
+import lua_js2nwcutlib from './lua/js2nwcut.lua';
+import lua_outstream from './lua/outstream.lua';
 import lua_synthesized_nwc from 'nwcutlib/synthesized-nwc.lua';
-import lua_synthesize from './web-nwcut.lua';
+import lua_synthesize from './lua/nwcut.lua';
 import lua_simulation from 'nwcutlib/simulation.lua';
 import lua_nwcut from 'nwcutlib/nwcut.lua';
 

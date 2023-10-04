@@ -14,8 +14,8 @@ const bldo = {
 	sourcemap: true,
 	target: 'es2020',
 	outdir: 'public',
-	assetNames: 'assets/[name]-[hash]',
-    chunkNames: '[ext]/[name]-[hash]',
+	//assetNames: 'assets/[name]-[hash]',
+    //chunkNames: '[ext]/[name]-[hash]',
 	loader: {
 		'.lua': 'text',
 		'.ttf': 'dataurl'
@@ -30,7 +30,7 @@ const bldo = {
 			}
 		}),
 		esbuild_replace({
-			include: /\bmain\.js$/,
+			include: /\bnwcutlib\.js$/,
 			define: {
 				'PKG_VERSION': JSON.stringify(pkg_json.version)
 			}
