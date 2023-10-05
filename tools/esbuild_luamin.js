@@ -1,7 +1,8 @@
+// Use this to minify a Lua file in esbuild
+
 const fs = require('fs');
 const luamin = require('luamin');
 
-// Use this to minify a Lua file
 module.exports = (options = {}) => {
 	return {
 		name: 'esbuild_luamin',

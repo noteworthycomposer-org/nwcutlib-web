@@ -16,9 +16,6 @@ dependencies:
     version: github.com/nwsw/nwcutlib/7ef5d040c6a78185b5bfa4e7cdefe7ea010d16ac
 
 devDependencies:
-  '@chialab/esbuild-plugin-html':
-    specifier: ^0.17.3
-    version: 0.17.3
   esbuild:
     specifier: ^0.19.4
     version: 0.19.4
@@ -30,34 +27,6 @@ devDependencies:
     version: 1.0.4
 
 packages:
-
-  /@chialab/esbuild-plugin-html@0.17.3:
-    resolution: {integrity: sha512-Q9ztdU/wJ0em7LHA+CeB/xqmhIoI5Gk4Y+gCiGmxVrHaT6AkkfAjYVojlyAA91JlpvXmtDIhUaVcJyhtmcip7g==}
-    engines: {node: '>=13'}
-    dependencies:
-      '@chialab/esbuild-rna': 0.17.8
-      '@chialab/node-resolve': 0.17.1
-    dev: true
-
-  /@chialab/esbuild-rna@0.17.8:
-    resolution: {integrity: sha512-hovU4W5zlyMnbJjexdczpQ9mcUfFsJuv9FWUhzpXiQwPprlp5lul+frTed9s8AyVDTDq2yq3Gx2Ac411QsXYGA==}
-    engines: {node: '>=13'}
-    dependencies:
-      '@chialab/estransform': 0.17.5
-      '@chialab/node-resolve': 0.17.1
-    dev: true
-
-  /@chialab/estransform@0.17.5:
-    resolution: {integrity: sha512-maJUFkwk0ie0L4VvDO74NDYyRvaTQAI0qmSmrms8bZxUkZ+zQZd1ByWKDCYTRwtR6AOzTvgEOl2ZvEG+OUKv/A==}
-    engines: {node: '>=13'}
-    dependencies:
-      '@parcel/source-map': 2.1.1
-    dev: true
-
-  /@chialab/node-resolve@0.17.1:
-    resolution: {integrity: sha512-YWaK0MKKeB0FILI6j7qiAlGoSC9MqJZDFXzlAgfOaMCbn8Feqh6njxv7mI3oVkdi7QwV6zPRaTN6hKig/NriMA==}
-    engines: {node: '>=13'}
-    dev: true
 
   /@esbuild/android-arm64@0.19.4:
     resolution: {integrity: sha512-mRsi2vJsk4Bx/AFsNBqOH2fqedxn5L/moT58xgg51DjX1la64Z3Npicut2VbhvDFO26qjWtPMsVxCd80YTFVeg==}
@@ -257,22 +226,9 @@ packages:
     dev: true
     optional: true
 
-  /@parcel/source-map@2.1.1:
-    resolution: {integrity: sha512-Ejx1P/mj+kMjQb8/y5XxDUn4reGdr+WyKYloBljpppUy8gs42T+BNoEOuRYqDVdgPc6NxduzIDoJS9pOFfV5Ew==}
-    engines: {node: ^12.18.3 || >=14}
-    dependencies:
-      detect-libc: 1.0.3
-    dev: true
-
   /commander@6.1.0:
     resolution: {integrity: sha512-wl7PNrYWd2y5mp1OK/LhTlv8Ff4kQJQRXXAvF+uU/TPNiVJUxZLRYGj/B0y/lPGAVcSbJqH2Za/cvHmrPMC8mA==}
     engines: {node: '>= 6'}
-    dev: true
-
-  /detect-libc@1.0.3:
-    resolution: {integrity: sha512-pGjwhsmsp4kL2RTz08wcOlGN83otlqHeD/Z5T8GXZB+/YcpQ/dgo+lbU8ZsGxV0HIvqqxo9l7mqYwyYMD9bKDg==}
-    engines: {node: '>=0.10'}
-    hasBin: true
     dev: true
 
   /esbuild@0.19.4:

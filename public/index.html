@@ -39,7 +39,7 @@
 	let text_out = document.getElementById('text-out');
 	let btnConvert = document.getElementById('btnConvert');
 
-	text_err.textContent = 'no errors';
+	text_err.textContent = 'no errors: version '+NWC.utlib.version;
 	fetch('sample.nwctxt')
 	.then(r => r.text())
 	.then(r => {text_in.textContent = r})

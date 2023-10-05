@@ -1,27 +1,27 @@
+import {unlink} from 'fs';
 import esbuild from 'esbuild';
-import htmlPlugin from '@chialab/esbuild-plugin-html';
 import esbuild_replace from './tools/esbuild_replace.js';
 import esbuild_luamin from './tools/esbuild_luamin.js';
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const pkg_json = require('./package.json')
 
+// kill any past gz version
+unlink('public/nwcutlib.js.gz',(err) => {});
+
 const bldo = {
-	entryPoints: ['src/index.html'],
+	entryPoints: ['src/nwcutlib.js'],
 	bundle: true,
 	treeShaking: true,
 	minify: true,
 	sourcemap: true,
 	target: 'es2020',
 	outdir: 'public',
-	//assetNames: 'assets/[name]-[hash]',
-    //chunkNames: '[ext]/[name]-[hash]',
 	loader: {
 		'.lua': 'text',
 		'.ttf': 'dataurl'
 	},
 	plugins: [
-		htmlPlugin(),
 		esbuild_replace({
 			include: /\b(fengari|fengari-interop).+\.js$/,
 			define: {
@@ -42,7 +42,7 @@ const bldo = {
 if (process.argv[2] == '--serve') {
 	console.log('serve mode: http://127.0.0.1:8000/');
 	let ctx = await esbuild.context(bldo);
-	let { host, port } = await ctx.serve({
+	await ctx.serve({
 		servedir: 'public',
 		host: '127.0.0.1',
 		port: 8000

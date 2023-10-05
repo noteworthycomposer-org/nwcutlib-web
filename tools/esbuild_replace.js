@@ -1,11 +1,11 @@
-const fs = require('fs');
-
-function escRegExp(s) {return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");}
-
 // The esbuild define in its current form cannot handle the replacements required by Fengari,
 // so we use this custom plugin instead. This converts string matches to a regex that only
 // matches the string when surrounded by word boundaries. This should sufficiently emulate
 // the webpack.DefinePlugin behaviour.
+const fs = require('fs');
+
+function escRegExp(s) {return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");}
+
 module.exports = (options = {}) => {
 	const d = options.define;
 	let r = [];

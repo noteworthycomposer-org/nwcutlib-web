@@ -1,3 +1,4 @@
 **
-!*.nwctxt
+!*.html
 !*.lua
+!*.nwctxt
