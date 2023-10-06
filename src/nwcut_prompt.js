@@ -7,12 +7,13 @@ const projector = createProjector();
 function nwcut_prompt(msg,  datatype, v3, v4,callbackFunc) {
 	let listvals = (datatype == '|') ? v3 : false;
 	let defaultval = listvals ? v4 : v3;
-	function doValChange(e) {
-		defaultval = e.target.value;
-	}
+	function doValChange(e) { defaultval = e.target.value; }
 	function doSubmit(e) {
-		document.querySelector('dialog.nwcut').close();
+		let dlg = document.querySelector('dialog.nwcut');
+		dlg.close();
 		projector.detach(renderprompt);
+		dlg.remove();
+		e.preventDefault();
 		callbackFunc(defaultval);
 	}
 	function renderprompt() {
