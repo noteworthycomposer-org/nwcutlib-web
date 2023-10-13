@@ -17,6 +17,9 @@ dependencies:
   nwcutlib:
     specifier: github:nwsw/nwcutlib
     version: github.com/nwsw/nwcutlib/7ef5d040c6a78185b5bfa4e7cdefe7ea010d16ac
+  redom:
+    specifier: ^3.29.1
+    version: 3.29.1
 
 devDependencies:
   esbuild:
@@ -323,6 +326,10 @@ packages:
   /readline-sync@1.4.10:
     resolution: {integrity: sha512-gNva8/6UAe8QYepIQH/jQ2qn91Qj0B9sYjMBBs3QOB8F2CXcKgLxQaJRP76sWVRQt+QU+8fAkCbCvjjMFu7Ycw==}
     engines: {node: '>= 0.8.0'}
+    dev: false
+
+  /redom@3.29.1:
+    resolution: {integrity: sha512-hEQEcPGRj4W2UT4IIBsNw29zMNV6vtXQ8ttitQ+Uc5XpdQ7i8d5VgKfm6fPmYbbApKXa98dUoEzDgk1oqXVlMg==}
     dev: false
 
   /sprintf-js@1.1.3:

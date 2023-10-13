@@ -1,34 +1,30 @@
-import {h,createProjector} from 'maquette';
+import {h, setChildren, mount, unmount} from 'redom';
 
-const projector = createProjector();
 
 // before maquette: 247kb (gzip 82009 bytes)
 // after maquette: 257.1kb (gzip 85699 bytes)
+// then switch to redom: 253.7 kb
 function nwcut_prompt(msg,  datatype, v3, v4,callbackFunc) {
 	let listvals = (datatype == '|') ? v3 : false;
 	let defaultval = listvals ? v4 : v3;
+	let dlg = h('dialog.nwcut',
+		h('form',{onsubmit: doSubmit},
+			h('label', msg, 
+				h('input', {type: 'text', value: defaultval, oninput: doValChange})
+			),
+			h('button',{type: 'submit'}, 'Submit')
+		)
+	);
 	function doValChange(e) { defaultval = e.target.value; }
 	function doSubmit(e) {
-		let dlg = document.querySelector('dialog.nwcut');
 		dlg.close();
-		projector.detach(renderprompt);
-		dlg.remove();
+		unmount(document.body, dlg);
 		e.preventDefault();
 		callbackFunc(defaultval);
 	}
-	function renderprompt() {
-		return h('dialog.nwcut',[
-			h('form',{onsubmit: doSubmit}, [
-				h('label', [
-					msg,
-					h('input', {type: 'text', value: defaultval, oninput: doValChange})
-				]),
-				h('button',{type: 'submit'}, ['Submit'])
-			])
-		]);
-	}
-	projector.append(document.body, renderprompt);
-	document.querySelector('dialog.nwcut').showModal();
+
+	mount(document.body, dlg);
+	dlg.showModal();
 }
 
 function nwcut_prompt_promise(msg,  datatype, v3, v4) {

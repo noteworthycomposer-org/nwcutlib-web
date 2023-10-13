@@ -18,7 +18,7 @@
 	"dependencies": {
 		"fengari-web": "^0.1.4",
 		"fflate": "^0.8.1",
-		"maquette": "^3.6.0",
-		"nwcutlib": "github:nwsw/nwcutlib"
+		"nwcutlib": "github:nwsw/nwcutlib",
+		"redom": "^3.29.1"
 	}
 }
