@@ -11,9 +11,6 @@ dependencies:
   fflate:
     specifier: ^0.8.1
     version: 0.8.1
-  maquette:
-    specifier: ^3.6.0
-    version: 3.6.0
   nwcutlib:
     specifier: github:nwsw/nwcutlib
     version: github.com/nwsw/nwcutlib/7ef5d040c6a78185b5bfa4e7cdefe7ea010d16ac
@@ -313,10 +310,6 @@ packages:
     resolution: {integrity: sha512-VKBcryd5nJte4ZNR29NOk8F/UkMipjeb4yoxcSS51z6QAzg9DXUC2WsfLniS0J1eh3pr/ZL3e9ha6V8fhoLbBQ==}
     hasBin: true
     dev: true
-
-  /maquette@3.6.0:
-    resolution: {integrity: sha512-Fb0zf/YGyYCj3t5JV8GOvYhprmKt2hFCCwomVCCMPwtr4abnsChJJYe297/a6AI14FIt5ZA8oVmeWWYjrmPaHQ==}
-    dev: false
 
   /os-tmpdir@1.0.2:
     resolution: {integrity: sha512-D2FR03Vir7FIu45XBY20mTb+/ZSWB00sjU9jdQXt83gDrI4Ztz5Fs7/yy74g2N5SVQY4xY1qDr4rNddwYRVX0g==}

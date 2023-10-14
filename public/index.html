@@ -16,7 +16,9 @@
 <h2>Convert any recent nwc text clip into abc notation text</h2>
 <p>
 <label for="id-barCount">Bars per measure <input id="id-barCount" type="number" min="2" max="10" value="4"></label>
+<input type="file" id="finput" accept=".nwc,.nwctxt" style="display:none">
 <label for="text-in">nwctxt Input:
+	<button id="btnUploadFile">Upload</button>
 	<textarea id="text-in" cols="80" rows="15" spellcheck="false"></textarea>
 	<button id="btnConvert">Convert</button>
 </label>
@@ -34,6 +36,8 @@
 
 <script>
 	let barc = document.getElementById('id-barCount');
+	let btnUpload = document.getElementById('btnUploadFile');
+	let id_finput = document.getElementById('finput');
 	let text_in = document.getElementById('text-in');
 	let text_err = document.getElementById('text-err');
 	let text_out = document.getElementById('text-out');
@@ -52,9 +56,20 @@
 		text_err.textContent = t2;
 	}
 
+	btnUpload.addEventListener('click', function() {
+		id_finput.click();
+	});
+
+	id_finput.addEventListener('change', function(ev) {
+			var f = this.files;
+			ev.stopPropagation();
+			ev.preventDefault();
+			if (f.length > 0) NWC.utlib.loadnwc(f[0],text_in);
+		});
 	btnConvert.addEventListener('click', function() {
 		NWC.utlib.run('abcMake.nw.nwcut.lua',text_in.value,Number(barc.value));
 	});
+
 </script>
 </body>
 </html>
