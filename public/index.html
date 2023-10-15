@@ -14,7 +14,7 @@
 <body>
 <h1>nwc2abc</h1>
 <h2>Convert any recent nwc text clip into abc notation text</h2>
-<p>
+<div id="id-dropArea">
 <label for="id-barCount">Bars per measure <input id="id-barCount" type="number" min="2" max="10" value="4"></label>
 <input type="file" id="finput" accept=".nwc,.nwctxt" style="display:none">
 <label for="text-in">nwctxt Input:
@@ -22,7 +22,8 @@
 	<textarea id="text-in" cols="80" rows="15" spellcheck="false"></textarea>
 	<button id="btnConvert">Convert</button>
 </label>
-
+</div>
+<div>
 <label for="text-err">Error Stream:
 	<textarea id="text-err" cols="80" rows="4" spellcheck="false"></textarea>
 </label>
@@ -30,11 +31,12 @@
 <label for="text-out">Output:
 	<textarea id="text-out" cols="80" rows="15" spellcheck="false"></textarea>
 </label>
-</p>
+</div>
 
 <script type="text/javascript" src="nwcutlib.js"></script>
 
 <script>
+	let dropArea = document.getElementById('id-dropArea');
 	let barc = document.getElementById('id-barCount');
 	let btnUpload = document.getElementById('btnUploadFile');
 	let id_finput = document.getElementById('finput');
@@ -61,11 +63,29 @@
 	});
 
 	id_finput.addEventListener('change', function(ev) {
-			var f = this.files;
-			ev.stopPropagation();
-			ev.preventDefault();
-			if (f.length > 0) NWC.utlib.loadnwc(f[0],text_in);
-		});
+		var f = this.files;
+		ev.stopPropagation();
+		ev.preventDefault();
+		if (f.length > 0) NWC.utlib.loadnwc(f[0],text_in);
+	});
+
+	function preventDefaults(e) {
+		e.preventDefault()
+		e.stopPropagation()
+	}
+	['dragenter','dragover','dragleave'].forEach(eventName => {
+		dropArea.addEventListener(eventName, preventDefaults, false)
+	});
+
+	dropArea.addEventListener('drop', function (ev) {
+		preventDefaults(ev);
+
+		var dt = ev.dataTransfer;
+		if (dt.files && dt.files.length) {
+			NWC.utlib.loadnwc(dt.files[0],text_in);
+		}
+	});
+
 	btnConvert.addEventListener('click', function() {
 		NWC.utlib.run('abcMake.nw.nwcut.lua',text_in.value,Number(barc.value));
 	});

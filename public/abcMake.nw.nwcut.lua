@@ -9,6 +9,8 @@ $NWCUT$CONFIG: FileText $
 nwcut.status = nwcut.const.rc_Report
 local testval = nwcut.prompt('testing how many bars per system?','#[2,9999,1]',5)
 print('testval: ',testval)
+local testval = nwcut.prompt('choices?','|Note|Bar|Rest','Note')
+print('testval: ',testval)
 
 local MAXBARSPERSYS = arg[2] and arg[2] or nwcut.prompt('how many bars per system?','#[2,9999,1]',5)
 
